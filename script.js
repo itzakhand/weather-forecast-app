@@ -1,5 +1,6 @@
 const URL = "https://api.weatherapi.com/v1/forecast.json?key=";
 const KEY = "efd3429e7b5243739bc41850221212";
+
 const search = document.getElementById("location__search");
 const others_places = document.getElementById("others__places");
 const city = document.getElementById("city");
@@ -12,12 +13,13 @@ const sunrise = document.getElementById("Sunrise");
 const sunset = document.getElementById("Sunset");
 const temp = document.getElementById("temp");
 const Wind_speed = document.getElementById("Wind_speed");
+
 const getWeather = (city) => {
   fetch(`${URL}${KEY}&q=${city}&days=1&aqi=no&alerts=no`)
     .then((response) => response.json())
     .then((response) => {
       console.log(response);
-      cityname.innerHTML = response.location.name;
+      cityname.innerHTML = `${response.location.name}'s`;
       cityname.classList.remove("blink");
       feels_like.innerHTML = response.current.feelslike_c;
       humidity.innerHTML = `${response.current.humidity+" "+"%"}`;
@@ -68,10 +70,11 @@ const fetchOnLoad = () => {
 window.addEventListener("load", fetchOnLoad);
 search.addEventListener("submit", (e) => {
   e.preventDefault();
-  // console.log(city.value)
+  console.log(city.value)
   if (city.value === "" || city.value.length < 3) {
     alert("Please enter a valid city");
     return;
   }
   getWeather(city.value);
+  city.value = ""
 });
