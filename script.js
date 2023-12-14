@@ -64,7 +64,7 @@ const fetchOnLoad = () => {
   FetchCity("Mumbai");
   FetchCity("Kolkata");
   FetchCity("Chennai");
-  FetchCity("Bangalore");
+  FetchCity("Uttar Pradesh");
 };
 
 window.addEventListener("load", fetchOnLoad);
